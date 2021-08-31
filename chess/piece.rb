@@ -1,7 +1,8 @@
 class Piece
 
-    def initialize(value)
+    def initialize(value, color)
         @value = value
+        @color = color
     end
 
 end
@@ -12,3 +13,5 @@ class NullPiece
     end
     
 end
+
+module 

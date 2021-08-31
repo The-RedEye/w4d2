@@ -2,37 +2,41 @@ require_relative "piece.rb"
 
 class Board
 
-    PAWN_ROW = Array.new(8) { Piece.new(:pawn) }
+    WHITE_PAWN_ROW = Array.new(8) { Piece.new(:pawn, :white) }
+
+    BLACK_RANK_ROW = Array.new(8) { Piece.new(:pawn, :black) }
+    
     WHITE_RANK_ROW = [
-        Piece.new(:rook),
-        Piece.new(:knight),
-        Piece.new(:bishop),
-        Piece.new(:queen),
-        Piece.new(:king),
-        Piece.new(:bishop),
-        Piece.new(:knight),
-        Piece.new(:rook)
+        Piece.new(:rook, :white),
+        Piece.new(:knight, :white),
+        Piece.new(:bishop, :white),
+        Piece.new(:queen, :white),
+        Piece.new(:king, :white),
+        Piece.new(:bishop, :white),
+        Piece.new(:knight, :white),
+        Piece.new(:rook, :white)
     ]
     BLACK_RANK_ROW = [
-        Piece.new(:rook),
-        Piece.new(:knight),
-        Piece.new(:bishop),
-        Piece.new(:king),
-        Piece.new(:queen),
-        Piece.new(:bishop),
-        Piece.new(:knight),
-        Piece.new(:rook)
+        Piece.new(:rook, :black),
+        Piece.new(:knight, :black),
+        Piece.new(:bishop, :black),
+        Piece.new(:king, :black),
+        Piece.new(:queen, :black),
+        Piece.new(:bishop, :black),
+        Piece.new(:knight, :black),
+        Piece.new(:rook, :black)
     ]
-    NULL_ROW = Array.new(8) #{ NullPiece.new }
 
     def self.reset(board)
         board.each_with_index do |row, i|
             if i == 0
                 board[i] = WHITE_RANK_ROW
-            elsif i == 1 || i == 6
-                board[i] = PAWN_ROW
+            elsif i == 1
+                board[i] = WHITE_PAWN_ROW
             elsif i.between?(2,5)
-                board[i] = NULL_ROW
+                board[i] = Array.new(8, nil)
+            elsif i == 6
+                board[i] == BLACK_PAWN_ROW
             else
                 board[i] = BLACK_RANK_ROW
             end
