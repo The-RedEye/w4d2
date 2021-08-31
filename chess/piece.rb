@@ -1,27 +1,6 @@
+require_relative "slideable.rb"
+require_relative "steppable.rb"
 
-class NullPiece < Piece
-
-    def initialize
-    end
-    
-end #End NullPiece Class
-
-module Slideable
-    HORIZONTAL_DIRS =[]
-    DIAGONAL_DIRS = []
-    
-
-    def horizontal_dirs #rook.horizontal_dirs
-       origin = self.position
-    end
-
-    def diagonal_dirs
-    end
-
-end
-
-
-#---------------------------
 
 class Piece
     attr_reader :value, :color
@@ -33,10 +12,25 @@ class Piece
     def moves
         result = []
 
+        move_dirs
+
         result 
     end
 
 end # End Piece Class
+
+
+# -----------------------
+
+class NullPiece < Piece
+
+    def initialize
+    end
+    
+end #End NullPiece Class
+
+
+#---------------------------
 
 class Rook < Piece
     attr_reader :symbol
@@ -44,6 +38,12 @@ class Rook < Piece
     def initialize
         @symbol = :rook
     end
+
+    def move_dirs
+        horizontal_dirs
+    end
+
+
 end
 
 class Bishop < Piece
@@ -51,6 +51,10 @@ class Bishop < Piece
 
     def initialize
         @symbol = :bishop
+    end
+
+    def move_dirs
+        diagonal_dirs
     end
 end
 
@@ -60,6 +64,11 @@ class Queen < Piece
     def initialize
         @symbol = :queen
     end
+
+    def move_dirs
+        horizontal_dirs + diagonal_dirs
+    end
+
 end
 
 class Knight < Piece
