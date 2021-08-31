@@ -23,7 +23,7 @@ class Board
         Piece.new(:knight),
         Piece.new(:rook)
     ]
-    NULL_ROW = Array.new(8) { NullPiece.new }
+    NULL_ROW = Array.new(8) #{ NullPiece.new }
 
     def self.reset(board)
         board.each_with_index do |row, i|
@@ -47,10 +47,27 @@ class Board
     end
 
     def move_piece(start_pos, end_pos)
-        raise "there is no piece at start_pos" if @board[start_pos[0]][start_pos[1]].instance_of?(NullPiece)
-        raise "the piece cannot move to end_pos" unless end_pos.all? { |pos| pos.between?(0,7) }
+        raise "start position is not valid" unless start_pos.all? { |pos| pos.between?(0,7) }
+        raise "end position is not valid" unless end_pos.all? { |pos| pos.between?(0,7) }
+        raise "there is no piece at start_pos" unless self[start_pos].instance_of?(Piece)
+    
+        self[end_pos] = self[start_pos]
+        self[start_pos] = nil #NullPiece.new
+        self[end_pos]
+
+    end
+
+    def [](pos) 
+        row , col = pos
+        @board[row][col]
+    end
+
+    def []=(pos, piece)
+        row , col = pos
+        @board[row][col] = piece
     end
 
 
 
 end
+b = Board.new
