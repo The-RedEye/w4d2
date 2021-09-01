@@ -1,6 +1,7 @@
 # PHASE 2
 
 class CoffeeError < StandardError; end
+class AgeError < StandardError; end
 require "byebug"
 
 def convert_to_int(str)
@@ -44,13 +45,16 @@ end
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
+    raise AgeError.new("You need to have known each other for at least 5 years") if yrs_known < 5
+    raise StandardError.new("You're missing a name!") if name == ""
+    raise StandardError.new("You're missing a hobby!") if fav_pastime == ""
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
   end
 
   def talk_about_friendship
-    puts "Wowza, we've been friends for #{@yrs_known}. Let's be friends for another #{1000 * @yrs_known}."
+    puts "Wowza, we've been friends for #{@yrs_known} years. Let's be friends for another #{1000 * @yrs_known}."
   end
 
   def do_friendstuff
