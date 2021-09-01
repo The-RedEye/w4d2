@@ -2,6 +2,7 @@
 
 class CoffeeError < StandardError; end
 class AgeError < StandardError; end
+class ExtraError < StandardError; end
 require "byebug"
 
 def convert_to_int(str)
