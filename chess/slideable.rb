@@ -14,9 +14,11 @@ module Slideable
     def moves
 
         moves_arr = []
-        self.move_dirs.each do |direction| 
+        # debugger
+        self.move_dirs.each do |direction|
             dx, dy = direction
             moves_arr += grow_unblocked_moves_in_dir(dx, dy)
+            # debugger
         end
 
         moves_arr
@@ -31,7 +33,7 @@ module Slideable
 
     def grow_unblocked_moves_in_dir(dx, dy)
         array = []
-        orgin = self.pos # [3, 4]
+        origin = self.pos # [3, 4]
 
         found = false
 

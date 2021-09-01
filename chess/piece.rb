@@ -3,20 +3,16 @@ require_relative "steppable.rb"
 require "singleton"
 
 class Piece
-    attr_reader :pos, :color
+    attr_reader :pos, :color, :board
+    attr_writer :pos
     def initialize(pos, color, board)
         @pos = pos
         @color = color
         @board = board
     end
 
-    def moves
-        result = []
-
-        move_dirs
-
-        result 
-    end
+    # def moves # add validation function
+    # end
 
 end # End Piece Class
 
