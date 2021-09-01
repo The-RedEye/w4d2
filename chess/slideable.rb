@@ -1,6 +1,6 @@
 module Slideable
-    HORIZONTAL_DIRS =[:horizontal, :vertical]
-    DIAGONAL_DIRS = [:left_diag, :right_diag]
+    HORIZONTAL_DIRS =[[-1,0],[1,0],[0,1],[0,-1]]
+    DIAGONAL_DIRS = [[-1,-1], [-1,1], [1,-1], [1,1]]
     
 
     def horizontal_dirs #rook.horizontal_dirs
@@ -10,18 +10,13 @@ module Slideable
     def diagonal_dirs
         DIAGONAL_DIRS
     end
-    
+    #rook:: moves_arr.concat(rook.moves)
     def moves
-
         moves_arr = []
-
-        origin = self.position
-
-        if move_dirs.include?(:horizontal)
-            moves_arr << grow_unblocked_moves_in_dir(0, 1)
+        self.move_dirs.each do |direction| 
+            dx, dy = direction
+            moves_arr << grow_unblocked_moves_in_dir(dx, dy)
         end
-
-
 
         moves_arr
     end
@@ -29,13 +24,12 @@ module Slideable
     private
     
     def move_dirs
+        raise "Method Not Found"
     end
 
     def grow_unblocked_moves_in_dir(dx, dy)
-        # generate the new position using dx and dy
-        # check board to see if new position is empty in the direction of dx and dy
-        # if empty, add to list of possible positions
-        # if not empty, don't add and stop
+      orgin = self.pos
+      #
     end
 
 end

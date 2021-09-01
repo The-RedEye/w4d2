@@ -3,10 +3,11 @@ require_relative "steppable.rb"
 
 
 class Piece
-    attr_reader :value, :color
-    def initialize(value, color)
-        @value = value
+    attr_reader :pos, :color
+    def initialize(pos, color, board)
+        @pos = pos
         @color = color
+        @board = board
     end
 
     def moves
