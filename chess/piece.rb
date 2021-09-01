@@ -83,8 +83,10 @@ class Queen < Piece
 end
 
 class Knight < Piece
+    include Steppable
 
-    @@Move_Diffs = [
+    def move_diffs 
+        [
         [2, 1],
         [-2,1],
         [2,-1],
@@ -93,7 +95,8 @@ class Knight < Piece
         [-1,2],
         [1,-2],
         [-1,-2]
-    ]
+        ]
+    end
 
     def initialize(pos, color, board)
         @symbol = :knight
@@ -104,8 +107,10 @@ class Knight < Piece
 end
 
 class King < Piece
+    include Steppable
 
-    @@Move_Diffs = [
+    def move_diffs 
+        [
         [0,1],
         [1,0],
         [0,-1],
@@ -114,7 +119,8 @@ class King < Piece
         [-1,1],
         [-1,-1],
         [1,-1]
-    ]
+        ]
+    end
 
     def initialize(pos, color, board)
         @symbol = :king

@@ -1,38 +1,27 @@
-module steppable
+module Steppable
 
   def moves
     array = []
     origin = self.pos
     x, y = origin.first, origin.last
 
-    @@Move_Diffs.each do |diff|
+    self.move_diffs.each do |diff|
 
-      dx, dx = diff.first, diff.last
+      dx, dy = diff.first, diff.last
       new_pos = [x + dx, y + dy]
 
-      if #in bounds
-        if #empty?
-          ADD TO Array
-        if  #opponent
-          ADD TO Array
-        else
-      end
-
-      
-
-
-
-      # is position out of bounds?
-      if new_pos.any? { |coord| !coord.between?(0,7) }
-      # is position a null piece?
-      elsif self.board[new_pos].instance_of?(NullPiece) # ??
+      #in bounds check
+      if new_pos.all? { |coord| coord.between?(0,7) }
+        if self.board[new_pos].instance_of?(NullPiece) #empty?
           array << new_pos
-          origin = new_pos
-      # if position is a piece, is it the same color as us?
-      elsif self.board[new_pos].color == self.color
-      # if not, it is an opponsing piece
-      else
+        elsif  self.board[new_pos].color != self.color
+          array << new_pos
+        end 
       end
+    end
+
+    array
+      
   end
 
   def move_diffs

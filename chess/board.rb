@@ -10,9 +10,9 @@ class Board
 
     def reset(board)
 
-        normal_board_state
+        #normal_board_state
 
-        # test_board_state
+        test_board_state
 
         board.each_with_index do |row, i|
             if i == 0
@@ -57,12 +57,12 @@ class Board
 
     def test_board_state
 
-        @white_pawn_row = Array.new(8) { Piece.new(:pawn, :black, self) }
+        @white_pawn_row = Array.new(8, NullPiece.instance)
 
         @white_rank_row = [
-            Rook.new([0,0], :white, self),
+            King.new([0,0], :white, self),
             NullPiece.instance,
-            NullPiece.instance,
+            Queen.new([0,2], :white, self),
             NullPiece.instance,
             NullPiece.instance,
             NullPiece.instance,
