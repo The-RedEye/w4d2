@@ -2,29 +2,29 @@ require_relative "piece.rb"
 
 class Board
 
-    WHITE_PAWN_ROW = Array.new(8) { Piece.new(:pawn, :white) }
+    WHITE_PAWN_ROW = Array.new(8) { Piece.new(:pawn, :white, self) }
 
-    BLACK_RANK_ROW = Array.new(8) { Piece.new(:pawn, :black) }
+    BLACK_PAWN_ROW = Array.new(8) { Piece.new(:pawn, :black, self) }
     
     WHITE_RANK_ROW = [
-        Piece.new(:rook, :white),
-        Piece.new(:knight, :white),
-        Piece.new(:bishop, :white),
-        Piece.new(:queen, :white),
-        Piece.new(:king, :white),
-        Piece.new(:bishop, :white),
-        Piece.new(:knight, :white),
-        Piece.new(:rook, :white)
+        Rook.new([0,0], :white, self),
+        Knight.new([0,1], :white, self),
+        Bishop.new([0,2], :white, self),
+        Queen.new([0,3], :white, self),
+        King.new([0,4], :white, self),
+        Bishop.new([0,5], :white, self),
+        Knight.new([0,6], :white, self),
+        Rook.new([0,7], :white, self)
     ]
     BLACK_RANK_ROW = [
-        Piece.new(:rook, :black),
-        Piece.new(:knight, :black),
-        Piece.new(:bishop, :black),
-        Piece.new(:king, :black),
-        Piece.new(:queen, :black),
-        Piece.new(:bishop, :black),
-        Piece.new(:knight, :black),
-        Piece.new(:rook, :black)
+        Rook.new([7, 0], :black, self),
+        Knight.new([7, 1], :black, self),
+        Bishop.new([7, 2], :black, self),
+        King.new([7, 3], :black, self),
+        Queen.new([7, 4], :black, self),
+        Bishop.new([7, 5], :black, self),
+        Knight.new([7, 6], :black, self),
+        Rook.new([7, 7], :black, self)
     ]
 
     def self.reset(board)
@@ -34,9 +34,9 @@ class Board
             elsif i == 1
                 board[i] = WHITE_PAWN_ROW
             elsif i.between?(2,5)
-                board[i] = Array.new(8, nil)
+                board[i] = Array.new(8, NullPiece.instance)
             elsif i == 6
-                board[i] == BLACK_PAWN_ROW
+                board[i] = BLACK_PAWN_ROW
             else
                 board[i] = BLACK_RANK_ROW
             end
@@ -74,4 +74,3 @@ class Board
 
 
 end
-b = Board.new

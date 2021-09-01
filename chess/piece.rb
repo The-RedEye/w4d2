@@ -1,6 +1,6 @@
 require_relative "slideable.rb"
 require_relative "steppable.rb"
-
+require "singleton"
 
 class Piece
     attr_reader :pos, :color
@@ -24,8 +24,19 @@ end # End Piece Class
 # -----------------------
 
 class NullPiece < Piece
+    include Singleton
 
     def initialize
+        @symbol = " "
+        @color = :none
+    end
+
+    def empty?
+        true
+    end
+
+    def moves
+        []
     end
     
 end #End NullPiece Class
@@ -36,8 +47,9 @@ end #End NullPiece Class
 class Rook < Piece
     attr_reader :symbol
     include Slideable
-    def initialize
+    def initialize(pos, color, board)
         @symbol = :rook
+        super 
     end
 
     def move_dirs
@@ -50,8 +62,9 @@ end
 class Bishop < Piece
     include Slideable
 
-    def initialize
+    def initialize(pos, color, board)
         @symbol = :bishop
+        super
     end
 
     def move_dirs
@@ -62,8 +75,9 @@ end
 class Queen < Piece
     include Slideable
 
-    def initialize
+    def initialize(pos, color, board)
         @symbol = :queen
+        super
     end
 
     def move_dirs
@@ -73,20 +87,23 @@ class Queen < Piece
 end
 
 class Knight < Piece
-    def initialize
+    def initialize(pos, color, board)
         @symbol = :knight
+        super
     end
 end
 
 class King < Piece
-    def initialize
+    def initialize(pos, color, board)
         @symbol = :king
+        super
     end
 end
 
 class Pawn < Piece
-    def initialize
+    def initialize(pos, color, board)
         @symbol = :pawn
+        super
     end
 end
 
