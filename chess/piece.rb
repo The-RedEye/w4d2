@@ -83,13 +83,39 @@ class Queen < Piece
 end
 
 class Knight < Piece
+
+    @@Move_Diffs = [
+        [2, 1],
+        [-2,1],
+        [2,-1],
+        [-2,-1],
+        [1,2],
+        [-1,2],
+        [1,-2],
+        [-1,-2]
+    ]
+
     def initialize(pos, color, board)
         @symbol = :knight
         super
     end
+
+
 end
 
 class King < Piece
+
+    @@Move_Diffs = [
+        [0,1],
+        [1,0],
+        [0,-1],
+        [-1,0],
+        [1,1],
+        [-1,1],
+        [-1,-1],
+        [1,-1]
+    ]
+
     def initialize(pos, color, board)
         @symbol = :king
         super
